@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Resource from 'vue-resource'
 import 'swiper'
 
 Vue.use(VueRouter)
+Vue.use(Resource);
 
 const routes = [{
 		path: '/index',
