@@ -7,25 +7,31 @@ Vue.use(VueRouter)
 Vue.use(Resource);
 
 const routes = [{
-		path: '/index',
-		component: resolve => require(['./App'], resolve),
-		children: [{
-			path: 'my',
-			component: resolve => require(['./components/my/index'], resolve)
-		}, {
-			path: 'articleList',
-			component: resolve => require(['./components/article-list/index'], resolve)
-		}, {
-			path: 'eatList',
-			component: resolve => require(['./components/eat-list/index'], resolve)
-		}, {
-			path: 'travelList',
-			component: resolve => require(['./components/travel-list/index'], resolve)
-		}]
+	path: '/index',
+	component: resolve => require(['./App'], resolve),
+	children: [{
+		path: 'my',
+		component: resolve => require(['./components/my/index'], resolve)
 	}, {
-		path: '/add',
-		component: resolve => require(['./components/article-write/index'], resolve),
+		path: 'articleList',
+		component: resolve => require(['./components/article-list/index'], resolve)
+	}, {
+		path: 'eatList',
+		component: resolve => require(['./components/eat-list/index'], resolve)
+	}, {
+		path: 'travelList',
+		component: resolve => require(['./components/travel-list/index'], resolve)
 	}]
+}, {
+	path: '/add',
+	component: resolve => require(['./components/article-write/index'], resolve),
+}, {
+	path: '/controlKind',
+	component: resolve => require(['./components/control/index'], resolve),
+}, {
+	path: '/controlMsg',
+	component: resolve => require(['./components/control/index'], resolve),
+}]
 
 const router = new VueRouter({
 	routes
