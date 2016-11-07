@@ -2,7 +2,7 @@
 	<div class="write">
 		<div class="title" flex='dir:left cross:center'>
 			<div class="title-name" flex-box="0">题目:</div>
-			<input type="text" flex-box="1">
+			<input type="text" flex-box="1" v-model="title">
 		</div>
 		<div class="title" flex='dir:left cross:center'>
 			<div class="title-name" flex-box="0">图片:</div>
@@ -14,7 +14,7 @@
 		</div>
 		<div class="title" flex='dir:left cross:center'>
 			<div class="title-name" flex-box="0">说明:</div>
-			<input type="text" flex-box="1">
+			<input type="text" flex-box="1" v-model="explain">
 		</div>
 		<v-editor 
 			:input-content="inputContent" 
@@ -31,6 +31,8 @@ import Editor from './Editor'
 		name:"artWrite",
 		data(){
 			return{
+				title:'',
+				explain:'',
 				top:'',
 				outputContent: '',
 				inputContent:'',
@@ -49,11 +51,27 @@ import Editor from './Editor'
 				})
 	       },
 	       save(){
-
+	       		this.$http.get('http://localhost:8000/addexplain', {
+			        params: {
+			        	_id:this.$route.params.id,
+			            title:this.title,
+			            topimg:this.top,
+			            explain:this.explain,
+			            message:this.outputContent
+			        }
+			    }).then((response) => {
+			        this.$router.go(-1)
+			    })
 	       }
 	    },
 		mounted:function(){
-			
+			this.$http.get('http://localhost:8000/getmessage', {
+		        params: {
+		        	_id:this.$route.params.id,
+		        }
+		    }).then((response) => {
+		        
+		    })
 		},
 		components: {
 	        'v-editor': Editor

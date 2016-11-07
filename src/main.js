@@ -23,14 +23,17 @@ const routes = [{
 		component: resolve => require(['./components/travel-list/index'], resolve)
 	}]
 }, {
-	path: '/add',
+	path: '/add/:id',
+	component: resolve => require(['./components/article-write/index'], resolve),
+}, {
+	path: '/change/:id',
 	component: resolve => require(['./components/article-write/index'], resolve),
 }, {
 	path: '/controlKind',
 	component: resolve => require(['./components/control/index'], resolve),
 }, {
-	path: '/controlMsg',
-	component: resolve => require(['./components/control/index'], resolve),
+	path: '/controlMsg/:id',
+	component: resolve => require(['./components/control/message'], resolve),
 }]
 
 const router = new VueRouter({

@@ -37,7 +37,7 @@
 		},
 		methods: {
 	       	golink:function(id){
-				this.$router.push({path:'/controlMsg'})
+				this.$router.push({path:'/controlMsg/'+id})
 			},
 			addkind:function(){
 				this.alert=true
