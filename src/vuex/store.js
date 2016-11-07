@@ -1,16 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex)
+
+Vue.use(Vuex);
 
 const state = {
-  open: true
+	rawHtml: '',
+	renderHtml: ''
 }
+
 const mutations = {
-  change (state) {
-    state.open=!state.open
-  }
+	MARKDOWN_SUCCESS(state, _rawHtml, content) {
+		console.log(_rawHtml, content)
+		state.rawHtml = _rawHtml
+		state.renderHtml = content
+	}
 }
+
 export default new Vuex.Store({
-  state,
-  mutations
+	state,
+	mutations
 })

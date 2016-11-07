@@ -23,7 +23,7 @@ const routes = [{
 			component: resolve => require(['./components/travel-list/index'], resolve)
 		}]
 	}, {
-		path: '/articleWrite',
+		path: '/add',
 		component: resolve => require(['./components/article-write/index'], resolve),
 	}]
 
