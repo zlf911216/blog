@@ -51,27 +51,48 @@ import Editor from './Editor'
 				})
 	       },
 	       save(){
-	       		this.$http.get('http://localhost:8000/addexplain', {
-			        params: {
-			        	_id:this.$route.params.id,
-			            title:this.title,
-			            topimg:this.top,
-			            explain:this.explain,
-			            message:this.outputContent
-			        }
-			    }).then((response) => {
-			        this.$router.go(-1)
-			    })
+	       		if(!this.$route.query.kindId){
+	       			this.$http.get('http://localhost:8000/addexplain', {
+				        params: {
+				        	_id:this.$route.params.id,
+				            title:this.title,
+				            topimg:this.top,
+				            explain:this.explain,
+				            message:this.outputContent
+				        }
+				    }).then((response) => {
+				        this.$router.go(-1)
+				    })
+	       		}else{
+	       			this.$http.get('http://localhost:8000/changeupdate', {
+				        params: {
+				        	kindId:this.$route.query.kindId,
+		        			Id:this.$route.params.id,
+				            title:this.title,
+				            topimg:this.top,
+				            explain:this.explain,
+				            message:this.outputContent
+				        }
+				    }).then((response) => {
+				        this.$router.go(-1)
+				    })
+	       		}
 	       }
 	    },
 		mounted:function(){
-			this.$http.get('http://localhost:8000/getmessage', {
+			if(!this.$route.query.kindId){return}
+			this.$http.get('http://localhost:8000/getchange', {
 		        params: {
-		        	_id:this.$route.params.id,
+		        	kindId:this.$route.query.kindId,
+		        	Id:this.$route.params.id
 		        }
 		    }).then((response) => {
-		        
+		        this.title=response.data.docs[0].message[0].title
+		        this.top=response.data.docs[0].message[0].topimg
+	            this.explain=response.data.docs[0].message[0].explain
+	            this.inputContent=response.data.docs[0].message[0].message
 		    })
+
 		},
 		components: {
 	        'v-editor': Editor

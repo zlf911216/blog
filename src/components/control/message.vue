@@ -4,9 +4,10 @@
 			<div>添加文章</div>
 		</div>
 		<div class="kind" flex-box="0" v-for="(item,index) in message" flex="dir:left">
-			<div flex-box="0" class="top-img"><img :src="item.topimg"></div>
-			<div flex-box="1">{{item.title}}</div>
-			<div class="change" flex-box="0" @click="change(item._id)">修改</div>
+			<div flex-box="0" class="top-img" flex="cross:center">
+				<img :src="item.topimg">
+			</div>
+			<div flex-box="1" @click="change(item._id)">{{item.title}}</div>
 			<div class="delete" flex-box="0" @click="delkind(item._id,index)">删除</div>
 		</div>
 		<div class="nav" flex-box="0"></div>
@@ -35,7 +36,7 @@
 			    })
 			},
 			change:function(id){
-				this.$router.push({path:'/change/'+id})
+				this.$router.push({path:'/change/'+id,query: { kindId: this.$route.params.id }})
 			}
 	    },
 		mounted:function(){
@@ -71,11 +72,11 @@
 		border-bottom: 1px solid rgba(0,0,0,.15);
 	}
 	.top-img{
-		width: 15%;
+		width: 20%;
 	}
 	.top-img img{
 		display: block;
-		height: 100%;
+		width: 100%;
 	}
 	.kind:last-child{
 		border-right: none;
@@ -85,12 +86,5 @@
 		background: #d20e0e;
 		color: white;
 		font-size: 0.95rem;
-	}
-	.change{
-		padding:0 1rem;
-		background: #945f1b;
-		color: white;
-		font-size: 0.95rem;
-		margin-right: 2px;
 	}
 </style>

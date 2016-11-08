@@ -4,15 +4,15 @@
 			<p class="travel_title" flex="dir:left main:justify cross:center">
 				<span class="travel_name">
 					<span>-- </span>
-					<span>{{item.name}}</span>
+					<span>{{item.title}}</span>
 					<span> --</span>
 				</span>
-				<span class="travel_time">{{item.time}}</span>
+				<span class="travel_time">{{item.date}}</span>
 			</p>
 			<div class="travel_top_img">
-				<img :src='item.top_img'>
+				<img :src='item.topimg'>
 			</div>
-			<p class="travel_message">{{item.message}}</p>
+			<p class="travel_message">{{item.explain}}</p>
 			<div class="see_more" flex="dir:top cross:center">查看全文</div>
 		</div>
 	</div>
@@ -21,14 +21,17 @@
 	export default {
 		data(){
 			return{
-				message:[{
-					name:'糖醋鲤鱼',
-					time:'2016-8-12',
-					top_img:(''),
-					message:'“糖醋鲤鱼”也是山东济南的传统名菜。济南北临黄河，黄河鲤鱼不仅肥嫩鲜美，而且金鳞赤尾，形态可爱，是宴会上的佳肴。据说“糖醋鲤鱼”最早始于黄河重镇——洛口镇。当...',
-					userid:"11889"
-		        }]
+				message:null
 			}
+		},
+		mounted(){
+		    this.$http.get('http://localhost:8000/getone', {
+		        params: {
+		            kind:'笔记'
+		        }
+		    }).then((response) => {
+		       	this.message=response.data.docs[0].message
+		    })
 		}
 	}
 </script>
@@ -66,12 +69,12 @@
 	}
 	.travel_top_img img{
 		position: absolute;
-		left: 0;
+		left: 50%;
 		top: 50%;
-		transform: translate(0,-50%);
+		transform: translate(-50%,-50%);
 		display: block;
-		width: 100%;
-		height: auto;
+		width: auto;
+		height: 100%;
 	}
 	.travel_message{
 		position: relative;

@@ -12,8 +12,9 @@
 		data(){
 			return{
 				msg:"zlf",
+				message:null
 			}
-		},
+		}
 	}
 </script>
 <style scoped>

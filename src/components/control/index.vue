@@ -1,12 +1,12 @@
 <template>
 	<div class="control">
-		<div class="add" @click="addkind">
+		<!-- <div class="add" @click="addkind">
 			<div>添加分类</div>
-		</div>
+		</div> -->
 		<div class="kind" flex-box="0" v-for="(item,index) in message" flex="dir:left">
 			<div flex-box="1" @click='golink(item._id)'>{{item.kind}}</div>
 			<div class="change" flex-box="0" @click="change(item._id,index)">修改</div>
-			<div class="delete" flex-box="0" @click="delkind(item._id,index)">删除</div>
+			<!-- <div class="delete" flex-box="0" @click="delkind(item._id,index)">删除</div> -->
 		</div>
 		<div class="nav" flex-box="0"></div>
 
